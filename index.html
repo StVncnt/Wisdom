@@ -78,12 +78,23 @@
         }
         
         .hexagram-line-build {
-            height: 8px;
+            height: 6px;
             background: #d4af37;
             border-radius: 2px;
         }
         .hexagram-line-build.broken {
             background: linear-gradient(to right, #d4af37 42%, transparent 42%, transparent 58%, #d4af37 58%);
+        }
+        
+        /* Компактные линии для мобильных */
+        @media (max-width: 640px) {
+            .hexagram-line-build {
+                height: 5px;
+            }
+            .hex-line-placeholder {
+                height: 1.25rem !important;
+                margin-bottom: 0.25rem !important;
+            }
         }
     </style>
 </head>
@@ -194,54 +205,54 @@
     </section>
 
     <!-- I Ching Section -->
-    <section id="iching" class="min-h-screen flex items-center justify-center p-8 hidden">
-        <div class="max-w-4xl w-full fade-in">
-            <button onclick="showWelcome()" class="text-zinc-600 hover:text-amber-600 transition-colors mb-12 flex items-center gap-2">
+    <section id="iching" class="h-screen flex items-center justify-center p-4 hidden overflow-hidden">
+        <div class="max-w-4xl w-full fade-in flex flex-col h-full max-h-screen py-4">
+            <button onclick="showWelcome()" class="text-zinc-600 hover:text-amber-600 transition-colors mb-4 flex items-center gap-2 flex-shrink-0">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                 </svg>
                 Назад
             </button>
             
-            <div id="ichingOracle" class="text-center">
-                <h2 class="text-3xl text-zinc-200 mb-8">Книга Перемен</h2>
-                <p class="text-zinc-500 mb-8 max-w-xl mx-auto">
-                    Сосредоточьтесь на своём вопросе. Гексаграмма строится из 6 линий снизу вверх. Каждый бросок трёх монет определяет одну линию.
+            <div id="ichingOracle" class="text-center flex-1 flex flex-col justify-center">
+                <h2 class="text-2xl sm:text-3xl text-zinc-200 mb-4">Книга Перемен</h2>
+                <p class="text-zinc-500 mb-4 text-sm sm:text-base max-w-xl mx-auto">
+                    Сосредоточьтесь на вопросе. Каждый бросок трёх монет определяет одну линию гексаграммы.
                 </p>
                 
                 <!-- Область построения гексаграммы -->
-                <div id="hexagramBuilder" class="mb-8 hidden">
-                    <div class="flex items-center justify-center gap-8 mb-6">
+                <div id="hexagramBuilder" class="mb-4 hidden">
+                    <div class="flex items-center justify-center gap-3 sm:gap-6 mb-3">
                         <!-- Монеты -->
-                        <div id="coinsArea" class="flex gap-4">
-                            <div id="coin1" class="coin w-16 h-16 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-2xl font-bold text-zinc-900 shadow-lg opacity-50">?</div>
-                            <div id="coin2" class="coin w-16 h-16 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-2xl font-bold text-zinc-900 shadow-lg opacity-50">?</div>
-                            <div id="coin3" class="coin w-16 h-16 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-2xl font-bold text-zinc-900 shadow-lg opacity-50">?</div>
+                        <div id="coinsArea" class="flex gap-2 sm:gap-4">
+                            <div id="coin1" class="coin w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-xl sm:text-2xl font-bold text-zinc-900 shadow-lg opacity-50">?</div>
+                            <div id="coin2" class="coin w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-xl sm:text-2xl font-bold text-zinc-900 shadow-lg opacity-50">?</div>
+                            <div id="coin3" class="coin w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-xl sm:text-2xl font-bold text-zinc-900 shadow-lg opacity-50">?</div>
                         </div>
                     </div>
                     
-                    <p id="coinResultText" class="text-zinc-400 mb-4 h-6"></p>
+                    <p id="coinResultText" class="text-zinc-400 mb-2 h-5 text-sm"></p>
                     
                     <!-- Строящаяся гексаграмма -->
-                    <div id="buildingHexagram" class="w-32 mx-auto mb-6">
-                        <div id="line6" class="hex-line-placeholder h-8 mb-2 border border-dashed border-zinc-700 rounded opacity-30"></div>
-                        <div id="line5" class="hex-line-placeholder h-8 mb-2 border border-dashed border-zinc-700 rounded opacity-30"></div>
-                        <div id="line4" class="hex-line-placeholder h-8 mb-2 border border-dashed border-zinc-700 rounded opacity-30"></div>
-                        <div id="line3" class="hex-line-placeholder h-8 mb-2 border border-dashed border-zinc-700 rounded opacity-30"></div>
-                        <div id="line2" class="hex-line-placeholder h-8 mb-2 border border-dashed border-zinc-700 rounded opacity-30"></div>
-                        <div id="line1" class="hex-line-placeholder h-8 border border-dashed border-zinc-700 rounded opacity-30"></div>
+                    <div id="buildingHexagram" class="w-24 sm:w-28 mx-auto mb-3">
+                        <div id="line6" class="hex-line-placeholder h-5 sm:h-6 mb-1 border border-dashed border-zinc-700 rounded opacity-30"></div>
+                        <div id="line5" class="hex-line-placeholder h-5 sm:h-6 mb-1 border border-dashed border-zinc-700 rounded opacity-30"></div>
+                        <div id="line4" class="hex-line-placeholder h-5 sm:h-6 mb-1 border border-dashed border-zinc-700 rounded opacity-30"></div>
+                        <div id="line3" class="hex-line-placeholder h-5 sm:h-6 mb-1 border border-dashed border-zinc-700 rounded opacity-30"></div>
+                        <div id="line2" class="hex-line-placeholder h-5 sm:h-6 mb-1 border border-dashed border-zinc-700 rounded opacity-30"></div>
+                        <div id="line1" class="hex-line-placeholder h-5 sm:h-6 border border-dashed border-zinc-700 rounded opacity-30"></div>
                     </div>
                     
-                    <p id="throwCounter" class="text-amber-600 mb-6">Бросок 1 из 6</p>
+                    <p id="throwCounter" class="text-amber-600 mb-3 text-sm">Бросок 1 из 6</p>
                 </div>
                 
-                <button id="throwButton" onclick="startDivination()" class="px-8 py-4 border border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-zinc-950 transition-all uppercase tracking-widest">
+                <button id="throwButton" onclick="startDivination()" class="px-6 py-3 sm:px-8 sm:py-4 border border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-zinc-950 transition-all uppercase tracking-widest text-sm sm:text-base">
                     Начать гадание
                 </button>
                 
-                <div class="mt-12 pt-8 border-t border-zinc-800">
+                <div class="mt-6 pt-4 border-t border-zinc-800">
                     <button onclick="showHexagramCatalog()" class="text-zinc-500 hover:text-amber-600 transition-colors text-sm">
-                        📚 Открыть каталог всех 64 гексаграмм
+                        📚 Каталог 64 гексаграмм
                     </button>
                 </div>
             </div>
@@ -1388,8 +1399,8 @@
             for (let i = 1; i <= 6; i++) {
                 const line = document.getElementById(`line${i}`);
                 line.innerHTML = '';
-                line.className = 'hex-line-placeholder h-8 mb-2 border border-dashed border-zinc-700 rounded opacity-30';
-                if (i === 1) line.className = line.className.replace('mb-2 ', '');
+                line.className = 'hex-line-placeholder h-5 sm:h-6 mb-1 border border-dashed border-zinc-700 rounded opacity-30';
+                if (i === 1) line.className = line.className.replace('mb-1 ', '');
             }
             
             document.getElementById('coinResultText').textContent = '';
@@ -1474,8 +1485,8 @@
             
             // Создать линию
             lineEl.innerHTML = '';
-            lineEl.className = 'h-8 mb-2 flex items-center hex-line-built';
-            if (lineNum === 1) lineEl.className = lineEl.className.replace('mb-2 ', '');
+            lineEl.className = 'h-5 sm:h-6 mb-1 flex items-center hex-line-built';
+            if (lineNum === 1) lineEl.className = lineEl.className.replace('mb-1 ', '');
             
             const lineDiv = document.createElement('div');
             lineDiv.className = 'hexagram-line-build w-full' + (isYang ? '' : ' broken');
